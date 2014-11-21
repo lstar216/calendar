@@ -20,6 +20,8 @@ public interface CalendarService {
     
     public void deleteAllUsers();
     
+    public List<CalendarUser> getAllUsers();
+    
     /* Event */
     public Event getEvent(int eventId);
 
@@ -41,6 +43,8 @@ public interface CalendarService {
     public void deleteEventAttendee(int id);
     
     public void deleteAllEventAttendees();
+    
+    public List<EventAttendee> getAllEventAttendees();
     
 	/* upgradeEventLevels */
 	public void upgradeEventLevels() throws Exception;

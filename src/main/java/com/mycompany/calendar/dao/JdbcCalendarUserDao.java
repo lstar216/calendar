@@ -19,7 +19,8 @@ import org.springframework.stereotype.Repository;
 
 import com.mycompany.calendar.domain.CalendarUser;
 
-@Repository
+@Repository("calendarUserDao")
+//Bean이 꼬이지 않도록 이름을 지정해주었습니다.
 public class JdbcCalendarUserDao implements CalendarUserDao {
 	private JdbcTemplate jdbcTemplate;
 

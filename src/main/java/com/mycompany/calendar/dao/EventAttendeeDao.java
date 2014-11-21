@@ -14,4 +14,7 @@ public interface EventAttendeeDao {
     public void deleteEventAttendee(int id);
     
     public void deleteAll();
+    
+    public List<EventAttendee> findAllEventAttendees();
+    //EventAttendee를 모두 찾아주는 함수 추가
 }

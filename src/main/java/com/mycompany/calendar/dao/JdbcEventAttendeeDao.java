@@ -19,7 +19,8 @@ import org.springframework.stereotype.Repository;
 
 import com.mycompany.calendar.domain.EventAttendee;
 
-@Repository
+@Repository("eventAttendeeDao")
+//Bean이 꼬이지 않도록 이름을 지정해주었습니다.
 public class JdbcEventAttendeeDao implements EventAttendeeDao {
 	private JdbcTemplate jdbcTemplate;
 
@@ -99,4 +100,11 @@ public class JdbcEventAttendeeDao implements EventAttendeeDao {
 		String sql_query = "delete from events_attendees";
 		this.jdbcTemplate.update(sql_query);
 	}
+
+	@Override
+	public List<EventAttendee> findAllEventAttendees(){
+		String sql_query = "select * from events_attendees";
+		return this.jdbcTemplate.query(sql_query, rowMapper);
+	}
+	//EventAttendee를 모드 찾아주는 함수가 없어 추가해주었습니다.
 }

@@ -27,7 +27,7 @@ public class DefaultCalendarService implements CalendarService {
 	private EventDao eventDao;
 
 	@Autowired
-	private CalendarUserDao userDao;
+	private CalendarUserDao calendarUserDao;
 
 	@Autowired
 	private EventAttendeeDao eventAttendeeDao;
@@ -39,31 +39,34 @@ public class DefaultCalendarService implements CalendarService {
 	/* CalendarUser */
 	@Override
 	public CalendarUser getUser(int id) {
-		return this.userDao.findUser(id);
+		return this.calendarUserDao.findUser(id);
 	}
 
 	@Override
 	public CalendarUser getUserByEmail(String email) {
-		return userDao.findUserByEmail(email);
+		return calendarUserDao.findUserByEmail(email);
 	}
 
 	@Override
 	public List<CalendarUser> getUsersByEmail(String partialEmail) {
-		return userDao.findUsersByEmail(partialEmail);
+		return calendarUserDao.findUsersByEmail(partialEmail);
 	}
 
 	@Override
 	public int createUser(CalendarUser user) {
-		return userDao.createUser(user);
+		return calendarUserDao.createUser(user);
 	}
 
 	@Override
 	public void deleteAllUsers() {
-		userDao.deleteAll();
+		calendarUserDao.deleteAll();
 	}
-
-
-
+	
+	@Override
+	public List<CalendarUser> getAllUsers(){
+		return calendarUserDao.findAllusers();
+	}
+	//CalendarUser를 모두 찾는 함수가 없어서 추가했음
 	/* Event */
 	@Override
 	public Event getEvent(int eventId) {
@@ -119,8 +122,11 @@ public class DefaultCalendarService implements CalendarService {
 	public void deleteAllEventAttendees() {
 		eventAttendeeDao.deleteAll();
 	}
-
-
+	@Override
+	public List<EventAttendee> getAllEventAttendees(){
+		return eventAttendeeDao.findAllEventAttendees();
+	}
+	//EventAttendee를 모두 찾는 함수가 없어서 추가했음
 
 	/* upgradeEventLevels */
 	@Override

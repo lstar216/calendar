@@ -22,7 +22,8 @@ import org.springframework.stereotype.Repository;
 import com.mycompany.calendar.domain.Event;
 import com.mycompany.calendar.domain.EventLevel;
 
-@Repository
+@Repository("eventDao")
+//Bean이 꼬이지 않도록 이름을 지정해주었습니다.
 public class JdbcEventDao implements EventDao {
 	private JdbcTemplate jdbcTemplate;
 
